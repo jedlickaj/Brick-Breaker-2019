@@ -14,30 +14,38 @@ float padX1;
 float padX2;
 int brick[];
 int x=10;
-int y=10; 
+int y=150;
+int wi = 45;
+int hi = 20;
+int count=0;
 ArrayList<Brick> myBricks=new ArrayList<Brick>();
+
 
 void setup() {
   size(700, 900);
 
-  for (int i=0; i<10; i++) {
-    myBricks.add(new Brick(x, y, 20, 10));
-    x+=10;
+  for (int i=0; i<50; i++) {
+    myBricks.add(new Brick(x, y, wi, hi));
+    x+=70;
     if (x>650) {
       x=10;
-      y+=10;
+      y+=40;
     }
   }
 }
 
 
 void draw() {
+  
   background(0, 51, 102);
-  bricks();
+  //bricks();
+  for (int i=0; i<myBricks.size(); i++) {
+    myBricks.get(i).display();
+  }
   fill(255, 255, 255);
   rect(xrect, yrect, w, h, r);
   fill((int)(Math.random()*250)+6, (int)(Math.random()*250)+6, (int)(Math.random()*250)+6);
-  rect(xBall, yBall, 15, 15);
+  rect(xBall, yBall, 12, 12);
   xBall = xBall + dX;
   yBall = yBall + dY;
   if (xBall>=690) {
@@ -59,6 +67,15 @@ void draw() {
     fill(255, 255, 255);
     text("GAME OVER", 250, 400);
   }
+  for(int i = 0; i<myBricks.size(); i++){
+      println(count+=1);
+    if(xBall<=myBricks.get(i).getBrickX()+wi && xBall>myBricks.get(i).getBrickX() && yBall==myBricks.get(i).getBrickY()){
+    
+      myBricks.remove(i);
+      dY = dY * -1;
+    }
+  }
+  
 }
 
 
@@ -72,24 +89,22 @@ void keyPressed() {
   }
 }
 
-void bricks() {
+//void bricks() {
   //int count = 0;
-  int y = 350;
+  //int y = 350;
   //int a = (int)(Math.random()*255);
   //int b = (int)(Math.random()*255);
   //int c = (int)(Math.random()*255);
-  for ( int j=150; j<y; j+=45) {
-    int count = 40;
-    for ( int i = 0; i<10; i++) {
-      int [] brick = new int [15];
-      brick[i]=count;
-      fill((int)(Math.random() * 255), 255, 255);
+  //for ( int j=150; j<y; j+=45) {
+    //int count = 40;
+    //for ( int i = 0; i<10; i++) {
+      //int [] brick = new int [15];
+      //brick[i]=count;
+      //fill((int)(Math.random() * 255), 255, 255);
       //fill(a, b, c);
-      rect(brick[i], j, 45, 20);
-      count +=65;
-    }
-  }
+      //rect(brick[i], j, 45, 20);
+      //count +=65;
+    //}
+  //}
   //if(
-}
-void ballTop() {
-}
+//}
