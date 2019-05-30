@@ -19,7 +19,7 @@ int wi = 45;
 int hi = 20;
 int count=0;
 ArrayList<Brick> myBricks=new ArrayList<Brick>();
-
+boolean left = false, right=false;
 
 void setup() {
   size(700, 900);
@@ -44,6 +44,8 @@ void draw() {
   }
   fill(255, 255, 255);
   rect(xrect, yrect, w, h, r);
+  egg();
+  
   fill((int)(Math.random()*250)+6, (int)(Math.random()*250)+6, (int)(Math.random()*250)+6);
   rect(xBall, yBall, 12, 12);
   xBall = xBall + dX;
@@ -68,12 +70,21 @@ void draw() {
     text("GAME OVER", 250, 400);
   }
   for(int i = 0; i<myBricks.size(); i++){
-      println(count+=1);
-    if(xBall<=myBricks.get(i).getBrickX()+wi && xBall>myBricks.get(i).getBrickX() && yBall==myBricks.get(i).getBrickY()){
-    
-      myBricks.remove(i);
+     
+    if(xBall<= (myBricks.get(i).getBrickX()+wi) && xBall>(myBricks.get(i).getBrickX()) && yBall<=(myBricks.get(i).getBrickY()+hi) && yBall>=(myBricks.get(i).getBrickY())){
+       println(count+=1);
+      dX = dX * -1;
       dY = dY * -1;
+      myBricks.remove(i);
+      
     }
+  }
+  if(myBricks.size()==0){
+    dX=0;
+    dY=0;
+    textSize(40);
+    fill(255, 255, 255);
+    text("You Win!!", 250, 400);
   }
   
 }
@@ -82,13 +93,31 @@ void draw() {
 void keyPressed() { 
   if (key == CODED) {
     if (keyCode==LEFT) {
-      xrect = xrect - 40;
+      left=true;
     } else if (keyCode==RIGHT) {
-      xrect = xrect + 40;
+      right=true;
     }
   }
 }
 
+void egg(){
+  if(left==true){
+    xrect = xrect - 7;
+  }
+  if(right==true){
+    xrect = xrect + 7;
+  }
+}
+
+void keyReleased(){
+  if (key == CODED) {
+    if (keyCode==LEFT) {
+      left=false;
+    } else if (keyCode==RIGHT) {
+      right=false;
+    }
+  }
+}
 //void bricks() {
   //int count = 0;
   //int y = 350;

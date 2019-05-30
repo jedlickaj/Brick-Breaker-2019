@@ -12,7 +12,7 @@ class Brick{
   }
   
   void display(){
-    fill(255, 0, 0);
+    fill((int)(Math.random()*255), 255, 255);
     rect(x, y, w, h);
   }
   int getBrickX(){
