@@ -71,7 +71,7 @@ void draw() {
   }
   for(int i = 0; i<myBricks.size(); i++){
      
-    if(xBall<= (myBricks.get(i).getBrickX()+wi) && xBall>(myBricks.get(i).getBrickX()) && yBall<=(myBricks.get(i).getBrickY()+hi) && yBall>=(myBricks.get(i).getBrickY())){
+    if(xBall <= (myBricks.get(i).getBrickX()+wi) && xBall>(myBricks.get(i).getBrickX()) && yBall<=(myBricks.get(i).getBrickY()+hi) && yBall>=(myBricks.get(i).getBrickY())){
        println(count+=1);
       dX = dX * -1;
       dY = dY * -1;
